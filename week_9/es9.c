@@ -3,7 +3,7 @@
 #include <math.h>
 
 typedef struct {
-  int rows; 
+  int rows;
   int cols;
   float **row_ptrs;
 } Mat;
@@ -136,7 +136,7 @@ int main(int argc, char **argv) {
   Mat *m2 = Mat_read("mat_2.txt");
   printf(" fatto.\n");
   printf("m2:\n");
-  Mat_print(m2);  
+  Mat_print(m2);
   printf("La matrice m2 e' simmetrica?\n");
   int is_symmmetric = Mat_is_symmetric(m2);
   if(is_symmmetric) {
@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
   Mat *m3 = Mat_read("mat_3.txt");
   printf(" fatto.\n");
   printf("m3:\n");
-  Mat_print(m3);  
+  Mat_print(m3);
   printf("Normalizzo le righe della matrice m3...");
   Mat_normalize_rows(m3);
   printf(" fatto.\n");
@@ -168,12 +168,10 @@ int main(int argc, char **argv) {
   Mat *copy_m2 = Mat_clone(m2);
   printf(" fatto.\n");
   printf("Copia m2:\n");
-  Mat_print(copy_m2);  
+  Mat_print(copy_m2);
 
   /********************************************************
    *                    TEST Mat_free                     *
-   ********************************************************
-   *					NON SICURO						  *
    ********************************************************/
   Mat_free(copy_m2);
   Mat_free(m3);
