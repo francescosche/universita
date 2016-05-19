@@ -1,0 +1,25 @@
+#include "esercizio2.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+SparseMatrix dense_to_sparse_matrix(float** mat, int rows, int cols) {  
+
+	SparseMatrix sparse_mat = (SparseMatrixElement*) malloc(sizeof(SparseMatrixElement));
+
+	sparse_mat->next = NULL;
+
+	for(int i=0; i<rows; i++) {
+		for(int j=0; j<cols; j++) {
+			if(mat[i][j] != 0) {
+				sparse_mat->row = i;
+				sparse_mat->col = j;
+				sparse_mat->value = mat[i][j];
+				SparseMatrix sparse_mat_aux = (SparseMatrixElement*) malloc(sizeof(SparseMatrixElement));
+				sparse_mat_aux->next = sparse_mat;
+				sparse_mat = sparse_mat_aux;
+			}
+		}
+	}
+
+	return sparse_mat->next->next;
+}
