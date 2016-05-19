@@ -152,23 +152,18 @@ int main(int argc, char **argv) {
   printf("rimuovo l'elemento 5 da set1: ");
   set_del(&set1, 5);
   set_print(set1);
-  printf("\n");
   printf("rimuovo l'elemento 0 da set1: ");
   set_del(&set1, 0);
   set_print(set1);
-  printf("\n");
   printf("rimuovo l'elemento 4 da set2: ");
   set_del(&set2, 4);
   set_print(set2);
-  printf("\n");
   printf("rimuovo l'elemento 9 da set3: ");
   set_del(&set3, 9);
   set_print(set3);
-  printf("\n");
   printf("rimuovo l'elemento 7 da set3: ");
   set_del(&set3, 7);
   set_print(set3);
-  printf("\n");
   printf("\n");  
 
   /* Test set_union */
@@ -176,11 +171,9 @@ int main(int argc, char **argv) {
   printf("unisco gli insiemi set1 e set2 e il risultato lo metto in set2: ");
   set_union(set1, &set2);
   set_print(set2);
-  printf("\n");
   printf("unisco gli insiemi set2 e set3 e il risultato lo metto in set2: ");
   set_union(set3, &set2);
   set_print(set2);
-  printf("\n");
   printf("\n");
 
   /* Test set_difference */
@@ -188,11 +181,9 @@ int main(int argc, char **argv) {
   printf("faccio la differenza tra gli insiemi set1 e set2 e il risultato lo metto in set1: ");
   set_difference(set2, &set1);
   set_print(set1);
-  printf("\n");
   printf("faccio la differenza tra gli insiemi set2 e set3 e il risultato lo metto in set3: ");
   set_difference(set2, &set3);
   set_print(set3);
-  printf("\n");
   printf("\n");  
   
   return 0;
