@@ -73,7 +73,7 @@ int is_subset(SetElem *sub, SetElem *set) {
 // dato un insieme set e un valore intero, modifica set aggiungendovi l'elemento info
 // se non e' gia' presente 
 void set_add(SetElem **set, int info) {
-	if(!is_element((*set), info)) {
+	if(!is_element(*set, info)) {
 		SetElem *tmp;
 		tmp=*set;
 		*set=(struct SetElem *)malloc(sizeof(SetElem));
@@ -85,20 +85,33 @@ void set_add(SetElem **set, int info) {
 // dato un insieme set e un valore intero, rimuove dall'insieme l'elemento info
 // (se presente)
 void set_del(SetElem **set, int info) {
-	if(!is_element((*set), info)) {
-		SetElem *tmp;
-		
+	if(!is_element(*set, info) || (*set) == NULL)
+		return;
+	if((*set)->info == info) {
+		SetElem *tmp = *set;
+		*set = (*set)->next;
+		free(tmp);
+	}else{
+		set_del(&(*set)->next, info);
 	}
 }
 
 // dato un insieme src e un insieme dest, inserisce nell'insieme dest gli elementi di src 
 // che non sono gia' presenti in dest
 void set_union(SetElem *src, SetElem **dest) {
-
+	if(src == NULL)
+		return;
+	if(!is_element(*dest, src->info))
+		set_add(dest,src->info);
+	set_union(src->next, &(*dest));
 }
 
 // dato un insieme src e un insieme dest, elimina dall'insieme dest gli eventuali elementi 
 // presenti anche in src
 void set_difference(SetElem *src, SetElem **dest) {
-
+	if(*dest == NULL || src == NULL)
+		return;
+	if(is_element(*dest,src->info))
+		set_del(dest, src->info);
+	set_difference(src->next, &(*dest));
 }
