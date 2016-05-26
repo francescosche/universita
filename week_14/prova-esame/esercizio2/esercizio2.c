@@ -1,11 +1,21 @@
 #include "esercizio2.h"
-#inclue "../utils/mat_struct.h"
+#include <stdio.h>
+#include "../utils/mat_struct.h"
 
 TipoSCL lowerValues(Mat* m, float value) {
-	/*
-		per ogni elemento in m
-			se è minore di value
-				creare una nuova struttura contenente riga, colonna e valore
-				collegarla alla struttura precedente
-	*/
+	TipoSCL result=(TipoSCL)malloc(sizeof(NodoSCL));
+	TipoSCL aux=result;
+	for(int r=0; r<m->rows; r++) {
+		for(int c=0; c<m->cols; c++) {
+			if(m->row_ptrs[r][c] < value) {
+				aux->next = (NodoSCL*) malloc(sizeof(NodoSCL));
+				aux = aux->next;
+				aux->v = m->row_ptrs[r][c];
+				aux->row = r;
+				aux->col = c;
+			}
+		}
+	}
+	aux->next=NULL;
+	return result->next;
 }
