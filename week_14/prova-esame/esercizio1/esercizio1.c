@@ -13,7 +13,7 @@ float mat_avg(Mat* m, int rs, int cs, int bs) {
 
 Mat* matrixScale(Mat* m, int block_size) {
 	int new_rows = (m->rows)/block_size;
-	int new_cols = (m->rows)/block_size;
+	int new_cols = (m->cols)/block_size;
 	Mat* new_m = (Mat*)Mat_alloc(new_rows, new_cols);
 	for(int r=0; r<new_m->rows; r++) {
 		for(int c=0; c<new_m->cols; c++) {
